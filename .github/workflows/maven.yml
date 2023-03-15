@@ -5,13 +5,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
-
-    runs-on: macos-latest
-
+  build-and-test-11-ubuntu:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 11
+    - name: Set up JDK 11 with Ubuntu
       uses: actions/setup-java@v3
       with:
         java-version: 11
@@ -19,3 +17,42 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package
+
+  build-and-test-17-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17 with Ubuntu
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B package
+
+  build-and-test-11-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 11 with MacOS
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B package
+
+  build-and-test-17-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17 with MacOS
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B package
